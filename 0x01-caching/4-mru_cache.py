@@ -26,7 +26,7 @@ class MRUCache(BaseCaching):
         if max size reached discard last put item
         """
         if key is None or item is None:
-            pass
+            return
         if key not in self.cache_data:
             # remove most used item if size exceeded
             if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
