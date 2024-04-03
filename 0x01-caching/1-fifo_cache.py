@@ -27,11 +27,12 @@ class FIFOCache(BaseCaching):
         if key is None or item is None:
             return
 
-        self.cache_data[key] = item
+        #self.cache_data[key] = item
         # remove first put item if size exceeded
         if len(self.cache_data) > BaseCaching.MAX_ITEMS:
             first_key, _ = self.cache_data.popitem(False)
             print("DICARD:", first_key)
+        self.cache_data[key] = item
 
     def get(self, key):
         """
