@@ -28,8 +28,8 @@ class FIFOCache(BaseCaching):
             return
 
         # remove first put item if size exceeded
-        if len(self.cache_data) >
-        BaseCaching.MAX_ITEMS and key not in self.cache_data.keys():
+        if len(self.cache_data) >= BaseCaching.MAX_ITEMS \
+                and key not in self.cache_data.keys():
             first_key = next(iter(self.cache_data.keys()))
             del self.cache_data[first_key]
             print("DICARD: ", first_key)
