@@ -28,10 +28,13 @@ class LIFOCache(BaseCaching):
         if key is None or item is None:
             return
         if key not in self.cache_data:
-            # remove first put item if size exceeded
-            if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
+            # remove last put item if size exceeded
+            if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
                 last_key, _ = self.cache_data.popitem(True)
                 print("DICARD:", last_key)
+                self.cache_data[key] = item
+                self.cache_data.move_to_end(key, last=True)
+
         self.cache_data[key] = item
         self.cache_data.move_to_end(key, last=True)
 
