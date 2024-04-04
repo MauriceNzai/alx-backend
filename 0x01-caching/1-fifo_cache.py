@@ -29,7 +29,7 @@ class FIFOCache(BaseCaching):
 
         self.cache_data[key] = item
         # remove first put item if size exceeded
-        if len(self.cache_data) > BaseCaching.MAX_ITEMS:
+        if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
             first_key, _ = self.cache_data.popitem(False)
             print("DICARD:", first_key)
 
@@ -37,6 +37,6 @@ class FIFOCache(BaseCaching):
         """
         Gets an item from the cache dictionary in self.cache_data
         """
-        if key is None or key not in self.cache_data:
-            return None
+        # if key is None or key not in self.cache_data:
+        # return None
         return self.cache_data.get(key, None)
