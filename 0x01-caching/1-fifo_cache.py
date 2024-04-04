@@ -32,6 +32,7 @@ class FIFOCache(BaseCaching):
                 and key not in self.cache_data.keys():
             first_key, _ = self.cache_data.popitem(False)
             print("DICARD: ", first_key)
+            self.cache_data[key] = item
 
         self.cache_data[key] = item
 
