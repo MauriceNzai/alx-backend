@@ -27,15 +27,15 @@ class MRUCache(BaseCaching):
         """
         if key is None or item is None:
             return
-        if key not in self.cache_data:
+        if key not in self.cache_data and len(
+                self.cache_data) < BaseCaching.MAX_ITEMS:
+            self.cache_data[key] = item
+        else:
             # remove most used item if size exceeded
-            if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
-                most_key, _ = self.cache_data.popitem(False)
-                print("DICARD:", most_key)
+            most_key, _ = self.cache_data.popitem(False)
+            print("DICARD:", most_key)
             self.cache_data[key] = item
             self.cache_data.move_to_end(key, last=False)
-        else:
-            self.cache_data[key] = item
 
     def get(self, key):
         """
