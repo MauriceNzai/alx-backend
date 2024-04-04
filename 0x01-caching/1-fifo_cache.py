@@ -2,7 +2,6 @@
 """
 FIFOCache caching class
 """
-from collections import OrderedDict
 from base_caching import BaseCaching
 
 
@@ -18,7 +17,6 @@ class FIFOCache(BaseCaching):
         initialier constractor
         """
         super().__init__()
-        self.cache_data = OrderedDict()
 
     def put(self, key, item):
         """
