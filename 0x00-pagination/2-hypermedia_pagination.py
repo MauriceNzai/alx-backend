@@ -50,24 +50,44 @@ class Server:
         assert page > 0 and page_size > 0
         start, end = index_range(page, page_size)
         data = self.dataset()
-        if start > len(data):
+        try:
+            # get start and end pages
+            start, end = index_range(page, page_size)
+            return data[start:end]
+        except IndexError:
             return []
-        return data[start:end]
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
         """
         Retrieves info about a page
         returns this info in a dictionary format
         """
+        assert type(page) is int and page > 0
+        assert type(page_size) is int and page_size > 0
+
         page_data = self.get_page(page, page_size)
         start, end = index_range(page, page_size)
+
         total_pages = math.ceil(len(self.__dataset) / page_size)
+
+        # estimating the next page
+        if (page < total_pages):
+            next_page = page+1
+        else:
+            next_page = None
+
+        # estimating the previous page
+        if (page == 1):
+            prev_page = None
+        else:
+            prev_page = page - 1
+
         page_info = {
                 'page_size': len(page_data),
                 'page': page,
                 'data': page_data,
-                'next-page': page + 1 if end < len(self.__dataset) else None,
-                'prev_page': page - 1 if start > 0 else None,
+                'next-page': next_page,
+                'prev_page': prev_page,  # - 1 if start > 0 else None,
                 'total_pages': total_pages
                 }
         return page_info
