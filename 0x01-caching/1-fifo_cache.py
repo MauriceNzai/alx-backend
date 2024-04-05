@@ -33,7 +33,9 @@ class FIFOCache(BaseCaching):
             first_key, _ = self.cache_data.popitem(False)
             print("DICARD:", first_key)
             self.cache_data[key] = item
-        else:
+        elif key in self.cache_data.keys():
+            self.cache_data[key] = item
+        elif len(self.cache_data) < BaseCaching.MAX_ITEMS:
             self.cache_data[key] = item
 
     def get(self, key):
