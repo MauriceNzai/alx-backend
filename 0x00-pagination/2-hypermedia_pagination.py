@@ -46,9 +46,10 @@ class Server:
         Retrieves  the correct indexes to paginate the dataset correctly
         and return the appropriate page of the dataset
         """
-        assert type(page) == int and type(page_size) == int
+        assert type(page) is int and type(page_size) is int
         assert page > 0 and page_size > 0
-        start, end = index_range(page, page_size)
+
+        # get the data from the csv
         data = self.dataset()
         try:
             # get start and end pages
@@ -65,10 +66,10 @@ class Server:
         assert type(page) is int and page > 0
         assert type(page_size) is int and page_size > 0
 
-        page_data = self.get_page(page, page_size)
-        start, end = index_range(page, page_size)
+        data = self.get_page(page, page_size)
+        total_pages = math.ceil(len(self.dataset()) / page_size)
 
-        total_pages = math.ceil(len(self.__dataset) / page_size)
+        start, end = index_range(page, page_size)
 
         # estimating the next page
         if (page < total_pages):
