@@ -31,7 +31,7 @@ class LRUCache(BaseCaching):
             # remove least used item if size exceeded
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
                 least_key, _ = self.cache_data.popitem(True)
-                print("DICARD:", least_key)
+                print("DISCARD:", least_key)
                 self.cache_data[key] = item
                 self.cache_data.move_to_end(key, last=False)
 

@@ -60,7 +60,7 @@ class LFUCache(BaseCaching):
                 lfu_key, _ = self.keys_freq[-1]
                 self.cache_data.pop(lfu_key)
                 self.keys_freq.pop()
-                print("DICARD:", lfu_key)
+                print("DISCARD:", lfu_key)
             self.cache_data[key] = item
             ins_index = len(self.keys_freq)
             for i, key_freq in enumerate(self.keys_freq):

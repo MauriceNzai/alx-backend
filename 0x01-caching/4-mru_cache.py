@@ -33,7 +33,7 @@ class MRUCache(BaseCaching):
         else:
             # remove most used item if size exceeded
             most_key, _ = self.cache_data.popitem(False)
-            print("DICARD:", most_key)
+            print("DISCARD:", most_key)
             self.cache_data[key] = item
             self.cache_data.move_to_end(key, last=False)
 

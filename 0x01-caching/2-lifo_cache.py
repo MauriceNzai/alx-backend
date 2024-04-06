@@ -31,7 +31,7 @@ class LIFOCache(BaseCaching):
             # remove last put item if size exceeded
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
                 last_key, _ = self.cache_data.popitem(True)
-                print("DICARD:", last_key)
+                print("DISCARD:", last_key)
                 self.cache_data[key] = item
                 self.cache_data.move_to_end(key, last=True)
 
