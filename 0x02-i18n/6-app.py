@@ -4,6 +4,7 @@ Basic Flask app with added internationalization support
 """
 from flask import Flask, render_template, request
 from flask_babel import Babel
+from typing import Union, Dict
 
 
 class Config:
@@ -66,7 +67,7 @@ def get_index() -> str:
     """
     home/index page route.
     """
-    return render_template('5-index.html')
+    return render_template('6-index.html')
 
 
 if __name__ == '__main__':

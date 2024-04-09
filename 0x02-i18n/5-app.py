@@ -4,6 +4,7 @@ Basic Flask app with added internationalization support
 """
 from flask import Flask, render_template, request
 from flask_babel import Babel
+from typing import Union, Dict
 
 
 class Config:
