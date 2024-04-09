@@ -28,6 +28,7 @@ users = {
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 
+
 def get_user() -> Union[Dict, None]:
     """
     Returns a user based on a user id or None if not user.
@@ -36,6 +37,7 @@ def get_user() -> Union[Dict, None]:
     if login_id:
         return users.get(int(login_id))
     return None
+
 
 @app.before_request
 def before_request() -> None:
