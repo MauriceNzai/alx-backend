@@ -7,6 +7,7 @@ from flask_babel import Babel
 import pytz
 from typing import Union, Dict
 
+
 class Config:
     """
     Flask Babel configuration class.
@@ -28,6 +29,7 @@ users = {
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 
+
 def get_user() -> Union[Dict, None]:
     """
     Returns a user based on a user id or None if not user.
@@ -36,6 +38,7 @@ def get_user() -> Union[Dict, None]:
     if login_id:
         return users.get(int(login_id), None)
     return None
+
 
 @app.before_request
 def before_request() -> None:
@@ -65,6 +68,7 @@ def get_locale() -> str:
     if header_locale in app.config["LANGUAGES"]:
         return header_locale
     return request.accept_languages.best_match(app.config["LANGUAGES"])
+
 
 @babel.timezoneselector
 def get_timezone() -> str:
